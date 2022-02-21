@@ -1,0 +1,14 @@
+.BoardGrid {
+  display: grid;
+  margin-top: 20px;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  justify-content: center;
+}
+
+.winnerDiv {
+  text-align: center;
+}
+.restartButon {
+  text-align: center;
+}
