@@ -22,27 +22,32 @@ export const squareSlice = createSlice({
   reducers: {
     makeMove: (state, action) => {
       const index = action.payload
-      if (state.squareValues[index] || state.winner) return
+
+      if (state.squareValues[index] || state.winner) return state
 
       state.squareValues[index] = state.nextTurn == "X" ? "X" : "0"
 
-      if (state.nextTurn == "X") state.nextTurn == "0"
-      else state.nextTurn == "X"
-    },
-    restartGame: state => {
-      state.nextTurn = state.winner ? state.winner : "X"
-      state.winner = null
-      state.squareValues = Array(9).fill(null)
-    },
-    findWinner: state => {
+      if (state.nextTurn == "X") state.nextTurn = "0"
+      else state.nextTurn = "X"
+      console.log(state.nextTurn)
+
       for (let i = 0; i < state.winnerCombinations.length; i++) {
         const [a, b, c] = state.winnerCombinations[i]
         if (state.squareValues[a] == state.squareValues[b] && state.squareValues[b] == state.squareValues[c] && state.squareValues[a] == "X") state.winner = "X"
 
         if (state.squareValues[a] == state.squareValues[b] && state.squareValues[b] == state.squareValues[c] && state.squareValues[a] == "0") state.winner = "0"
       }
+    },
+    restartGame: state => {
+      state.nextTurn = state.winner ? state.winner : "X"
+      state.winner = null
+      state.squareValues = Array(9).fill(null)
     }
   }
 })
+export default squareSlice.reducer
+export const { makeMove, restartGame } = squareSlice.actions
 
-export const { makeMove, restartGame, findWinner } = squareSlice.actions
+export const winnerSelector = state => state.squares.winner
+export const nextTurnSelector = state => state.squares.nextTurn
+export const squareValuesSelector = state => state.squares.squareValues
