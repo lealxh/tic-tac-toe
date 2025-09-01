@@ -3,6 +3,14 @@ import { makeMove, restartGame, winnerSelector, nextTurnSelector, squareValuesSe
 import { useDispatch, useSelector } from "react-redux"
 import Square from "./Square"
 import "./Board.css"
+/**
+ * A UI component representing a game board.
+ * @param {import('react-redux').useDispatch} dispatch - The Redux dispatch function.
+ * @param {import('react-redux').useSelector} winnerSelector - A Redux selector function for the current winner.
+ * @param {import('react-redux').useSelector} nextTurnSelector - A Redux selector function for the next turn.
+ * @param {import('react-redux').useSelector} squareValuesSelector - A Redux selector function for the current square values.
+ * @returns {JSX.Element} The JSX element representing the game board.
+ */
 
 function Board() {
   const dispatch = useDispatch()
